@@ -1,0 +1,18 @@
+{
+  "name": "smart-campus-analytics",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure, database-backed campus analytics and student support platform",
+  "workspaces": ["apps/api", "apps/web"],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c blue,green \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm run start:dev -w @smart-campus/api",
+    "dev:web": "npm run dev -w @smart-campus/web",
+    "build": "npm run build -w @smart-campus/api && npm run build -w @smart-campus/web",
+    "test": "npm run test -w @smart-campus/api",
+    "db:generate": "npm run prisma:generate -w @smart-campus/api",
+    "db:migrate": "npm run prisma:migrate -w @smart-campus/api",
+    "db:seed": "npm run prisma:seed -w @smart-campus/api"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}
